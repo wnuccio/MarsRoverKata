@@ -31,5 +31,6 @@ public class MarsRoverTest {
     @Test
     void should_rotate_to_left() {
         assertEquals("0:0:W", marsRover.execute("L"));
+        assertEquals("0:0:S", marsRover.execute("LL"));
     }
 }
