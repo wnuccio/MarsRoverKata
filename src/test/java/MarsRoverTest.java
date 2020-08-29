@@ -38,7 +38,6 @@ public class MarsRoverTest {
         assertEquals("0:0:W", marsRover.execute("LLLLL"));
     }
 
-    @Disabled
     @Test
     void should_move_and_then_rotate_left() {
         assertEquals("0:1:W", marsRover.execute("ML"));
