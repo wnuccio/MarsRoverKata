@@ -2,7 +2,7 @@ public class MarsRover {
 
     public String execute(String s) {
         int y = countCharacter(s, 'M');
-        String direction = computeDirection(countCharacter(s, 'L'));
+        String direction = computeDirection(s);
         return buildOutputString(y, direction);
     }
 
@@ -10,9 +10,11 @@ public class MarsRover {
         return String.format("0:%d:%s", y, direction);
     }
 
-    private String computeDirection(int numberOfLs) {
-        String[] directions = new String[]{"N", "W", "S", "E"};
-        int directionIndex = numberOfLs % 4;
+    private String computeDirection(String s) {
+        int rotationIndex = (countCharacter(s, 'L') - countCharacter(s, 'R') ) % 4;
+        int directionIndex = rotationIndex >= 0 ? rotationIndex : 4 - (-1 * rotationIndex);
+
+    String[] directions = new String[]{"N", "W", "S", "E"};
         return directions[directionIndex];
     }
 

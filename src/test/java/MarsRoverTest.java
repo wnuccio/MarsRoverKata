@@ -42,4 +42,9 @@ public class MarsRoverTest {
     void should_move_and_then_rotate_left() {
         assertEquals("0:1:W", marsRover.execute("ML"));
     }
+
+    @Test
+    void should_rotate_right() {
+        assertEquals("0:0:E", marsRover.execute("R"));
+    }
 }
