@@ -26,4 +26,11 @@ public class MarsRoverTest {
 
         assertEquals("0:1:N", output);
     }
+
+    @Test
+    public void should_advance_two_position_towards_N() {
+        String output = marsRover.execute("MM");
+
+        assertEquals("0:2:N", output);
+    }
 }
