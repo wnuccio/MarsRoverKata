@@ -1,4 +1,5 @@
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -14,14 +15,14 @@ public class MarsRoverTest {
     }
 
     @Test
-    public void should_stay_into_start_position_after_empty_command() {
+    void should_stay_into_start_position_after_empty_command() {
         String output = marsRover.execute("");
 
         assertEquals("0:0:N", output);
     }
 
     @Test
-    public void should_advance_from_one_to_nine_positions_towards_N() {
+    void should_advance_from_one_to_nine_positions_towards_N() {
         assertEquals("0:1:N", marsRover.execute("M"));
         assertEquals("0:2:N", marsRover.execute("MM"));
         assertEquals("0:5:N", marsRover.execute("MMMMM"));
@@ -35,5 +36,11 @@ public class MarsRoverTest {
         assertEquals("0:0:E", marsRover.execute("LLL"));
         assertEquals("0:0:N", marsRover.execute("LLLL"));
         assertEquals("0:0:W", marsRover.execute("LLLLL"));
+    }
+
+    @Disabled
+    @Test
+    void should_move_and_then_rotate_left() {
+        assertEquals("0:1:W", marsRover.execute("ML"));
     }
 }

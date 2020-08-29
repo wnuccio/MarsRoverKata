@@ -1,24 +1,30 @@
 public class MarsRover {
 
-
     public String execute(String s) {
-        String direction;
-        int yPosition;
-
-        if (s.contains("L")) {
-            yPosition = 0;
-            direction = direction(numOfL(s));
-        } else {
-            yPosition = s.length();
-            direction = direction(0);
-        }
-
-        return String.format("0:%d:%s", yPosition, direction);
+        int y = computeY(s);
+        String direction = computeDirection(numOfL(s));
+        return buildOutputString(y, direction);
     }
 
-    private String direction(int numberOfLs) {
+    private String buildOutputString(int y, String direction) {
+        return String.format("0:%d:%s", y, direction);
+    }
+
+    private int computeY(String s) {
+        int y;
+
+        if (s.contains("L")) {
+            y = 0;
+        } else {
+            y = s.length();
+        }
+        return y;
+    }
+
+    private String computeDirection(int numberOfLs) {
         String[] directions = new String[]{"N", "W", "S", "E"};
-        return directions[numberOfLs%4];
+        int directionIndex = numberOfLs % 4;
+        return directions[directionIndex];
     }
 
     private int numOfL(String s) {
