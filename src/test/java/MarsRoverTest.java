@@ -33,6 +33,7 @@ public class MarsRoverTest {
         assertEquals("0:0:W", marsRover.execute("L"));
         assertEquals("0:0:S", marsRover.execute("LL"));
         assertEquals("0:0:E", marsRover.execute("LLL"));
-//        assertEquals("0:0:N", marsRover.execute("LLLL"));
+        assertEquals("0:0:N", marsRover.execute("LLLL"));
+        assertEquals("0:0:W", marsRover.execute("LLLLL"));
     }
 }

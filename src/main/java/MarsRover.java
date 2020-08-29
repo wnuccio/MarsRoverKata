@@ -18,7 +18,7 @@ public class MarsRover {
 
     private String direction(int numberOfLs) {
         String[] directions = new String[]{"N", "W", "S", "E"};
-        return directions[numberOfLs];
+        return directions[numberOfLs%4];
     }
 
     private int numOfL(String s) {
