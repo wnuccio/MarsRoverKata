@@ -1,24 +1,56 @@
+import java.util.Arrays;
+
 public class MarsRover {
 
-    public String execute(String s) {
-        int y = countCharacter(s, 'M');
-        String direction = computeDirection(s);
-        return buildOutputString(y, direction);
+    private int y;
+    private int x;
+    private String currentDirection;
+
+    public MarsRover() {
+        x = 0;
+        y = 0;
+        currentDirection = "N";
     }
 
-    private String buildOutputString(int y, String direction) {
-        return String.format("0:%d:%s", y, direction);
+    public String execute(String commands) {
+        computeFinalPosition(commands);
+        return buildOutputString();
     }
 
-    private String computeDirection(String s) {
-        int rotationIndex = (countCharacter(s, 'L') - countCharacter(s, 'R') ) % 4;
-        int directionIndex = rotationIndex >= 0 ? rotationIndex : 4 - (-1 * rotationIndex);
+    private void computeFinalPosition(String commands) {
+        for (char ch: commands.toCharArray()) {
+            if (ch == 'M') {
+                advanceInDirection();
 
-    String[] directions = new String[]{"N", "W", "S", "E"};
-        return directions[directionIndex];
+            } else {
+                changeCurrentDirection(ch);
+            }
+        }
     }
 
-    private int countCharacter(String s, char character) {
-        return (int) s.chars().filter(ch -> ch == character).count();
+    private void changeCurrentDirection(int ch) {
+        String[] directions = new String[]{"N", "W", "S", "E"};
+        int directionIndex = Arrays.asList(directions).indexOf(currentDirection);
+        directionIndex = ch == 'L' ? directionIndex + 1 : directionIndex - 1;
+        if (directionIndex < 0) directionIndex = 3;
+        else if (directionIndex > 3) directionIndex = 0;
+        this.currentDirection = directions[directionIndex];
     }
+
+    private void advanceInDirection() {
+        if ("N".equals(currentDirection)) {
+            y++;
+        } else if ("S".equals(currentDirection)) {
+            y--;
+        } else if ("E".equals(currentDirection)) {
+            x++;
+        } else if ("W".equals(currentDirection)) {
+            x--;
+        }
+    }
+
+    private String buildOutputString() {
+        return String.format("%d:%d:%s", x, y, currentDirection);
+    }
+
 }
