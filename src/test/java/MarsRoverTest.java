@@ -28,4 +28,8 @@ public class MarsRoverTest {
         assertEquals("0:9:N", marsRover.execute("MMMMMMMMM"));
     }
 
+    @Test
+    void should_rotate_to_left() {
+        assertEquals("0:0:W", marsRover.execute("L"));
+    }
 }
