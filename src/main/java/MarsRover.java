@@ -1,5 +1,7 @@
 public class MarsRover {
     public String execute(String s) {
-        return "0:0:N";
+        if (s.isEmpty()) return "0:0:N";
+
+        return "0:1:N";
     }
 }
