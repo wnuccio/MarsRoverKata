@@ -1,3 +1,3 @@
 public interface Command {
-    void apply(Rover rover);
+    void applyTo(Rover rover);
 }

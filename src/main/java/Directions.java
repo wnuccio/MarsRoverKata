@@ -5,7 +5,6 @@ public class Directions {
     private WrappingRange indexRange;
 
     public Directions() {
-
         directionArray = new Direction[] {
                 Direction.N,
                 Direction.E,
@@ -24,9 +23,17 @@ public class Directions {
         return Arrays.asList(directionArray).indexOf(direction);
     }
 
-    public Direction applyRotation(Direction direction, int rotationSign) {
+    private Direction applyRotation(Direction direction, int rotationSign) {
         int currentIndex = indexOf(direction);
         int newIndex = indexRange.wrappedValue(currentIndex + rotationSign);
         return this.getByIndex(newIndex);
+    }
+
+    public Direction rotateToLeft(Direction direction) {
+        return applyRotation(direction, -1);
+    }
+
+    public Direction rotateToRight(Direction direction) {
+        return applyRotation(direction, +1);
     }
 }

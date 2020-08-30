@@ -6,7 +6,7 @@ public class MoveCommand implements Command {
     }
 
     @Override
-    public void apply(Rover rover) {
+    public void applyTo(Rover rover) {
         rover.moveOnGrid(grid);
     }
 }
