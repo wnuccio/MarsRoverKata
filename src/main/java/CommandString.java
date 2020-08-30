@@ -5,10 +5,10 @@ public class CommandString {
         this.commandString = commandString;
     }
 
-    public static Command createCommand(char commandChar, Rover rover, Grid grid) {
-        if (commandChar == 'M') return new MoveCommand(rover, grid);
-        if (commandChar == 'L') return new RotateLeftCommand(rover);
-        if (commandChar == 'R') return new RotateRightCommand(rover);
+    public static Command createCommand(char commandChar, Grid grid) {
+        if (commandChar == 'M') return new MoveCommand(grid);
+        if (commandChar == 'L') return new RotateLeftCommand();
+        if (commandChar == 'R') return new RotateRightCommand();
         throw new IllegalArgumentException("Invalid command char: " + commandChar);
     }
 
@@ -20,7 +20,7 @@ public class CommandString {
 
     private void applyAllCommands(Rover rover, Grid grid) {
         for (char commandChar : commandString.toCharArray()) {
-            Command command = createCommand(commandChar, rover, grid);
+            Command command = createCommand(commandChar, grid);
             command.apply(rover);
         }
     }

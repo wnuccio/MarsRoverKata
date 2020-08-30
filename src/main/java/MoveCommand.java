@@ -1,9 +1,7 @@
 public class MoveCommand implements Command {
-    private final Rover rover;
     private final Grid grid;
 
-    public MoveCommand(Rover rover, Grid grid) {
-        this.rover = rover;
+    public MoveCommand(Grid grid) {
         this.grid = grid;
     }
 

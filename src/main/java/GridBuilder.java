@@ -1,5 +1,3 @@
-import java.security.cert.CertPathBuilder;
-
 public class GridBuilder {
 
     private final Grid grid;

@@ -1,9 +1,6 @@
 public class RotateLeftCommand implements Command {
 
-    private final Rover rover;
-
-    public RotateLeftCommand(Rover rover) {
-        this.rover = rover;
+    public RotateLeftCommand() {
     }
 
     @Override
