@@ -1,4 +1,5 @@
 public class MarsRover {
+    private static final int MAX_Y = 10;
     private int y;
     private int x;
     private Direction direction;
@@ -35,6 +36,7 @@ public class MarsRover {
 
     void up() {
         y++;
+        if (y == MAX_Y) y = 0;
     }
 
     void down() {
