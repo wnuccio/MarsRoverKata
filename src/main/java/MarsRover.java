@@ -1,8 +1,8 @@
 public class MarsRover {
     private final Grid grid;
-    private Point position;
-    private Direction direction;
-    private boolean obstacleEncountered;
+    public Point position;
+    public Direction direction;
+    public boolean obstacleEncountered;
 
     public MarsRover(Grid grid) {
         this.grid = grid;
@@ -13,20 +13,8 @@ public class MarsRover {
     }
 
     public String execute(String commandString) {
-        moveToFinalPosition(commandString);
-        return buildOutputString();
-    }
-
-    private void moveToFinalPosition(String commandString) {
-        for (char commandChar : commandString.toCharArray()) {
-            Command command = Command.byChar(commandChar);
-            command.apply(this);
-        }
-    }
-
-    private String buildOutputString() {
-        Output output = new Output(obstacleEncountered, direction);
-        position.addTo(output);
+        CommandString commands = new CommandString(commandString);
+        Output output = commands.execute(this);
         return output.asString();
     }
 

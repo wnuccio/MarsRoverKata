@@ -1,27 +1,27 @@
-import java.util.List;
-
-import static java.util.Arrays.asList;
+import java.util.Arrays;
 
 public class Directions {
-    private final List<Direction> directionList;
+    private final Direction[] directionArray;
     private WrappingRange indexRange;
 
     public Directions() {
-        directionList = asList(
+
+        directionArray = new Direction[] {
                 Direction.N,
                 Direction.E,
                 Direction.S,
-                Direction.W);
-
-        indexRange = new WrappingRange(0, directionList.size()-1);
+                Direction.W
+        };
+        
+        indexRange = new WrappingRange(0, directionArray.length-1);
     }
 
     private Direction getByIndex(int directionIndex) {
-        return directionList.get(directionIndex);
+        return directionArray[directionIndex];
     }
 
     private int indexOf(Direction direction) {
-        return directionList.indexOf(direction);
+        return Arrays.asList(directionArray).indexOf(direction);
     }
 
     public Direction applyRotation(Direction direction, int rotationSign) {
