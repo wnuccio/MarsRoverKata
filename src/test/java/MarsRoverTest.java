@@ -1,8 +1,5 @@
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-
-import java.io.Console;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -52,6 +49,11 @@ public class MarsRoverTest {
     @Test
     void should_alternate_to_move_and_rotate() {
         assertEquals("1:1:N", new MarsRover().execute("MRML"));
+    }
+
+    @Test
+    void should_move_describing_a_square() {
+        assertEquals("0:0:W", new MarsRover().execute("MMRMMRMMRMM"));
     }
 
 }
