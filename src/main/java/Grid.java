@@ -2,16 +2,18 @@ public class Grid {
     private final int GRID_SIZE = 10;
     private final int MIN_COORDINATE = 0;
     private final int MAX_COORDINATE = GRID_SIZE - 1;
-    private final Integer obstacleX;
-    private final Integer obstacleY;
+    private Integer obstacleX;
+    private Integer obstacleY;
 
     public Grid() {
-        this(null, null);
+        this.obstacleX = null;
+        this.obstacleY = null;
     }
 
-    public Grid(Integer x, Integer y) {
+    public Grid addObstacle(int x, int y) {
         this.obstacleX = x;
         this.obstacleY = y;
+        return this;
     }
 
     public int correctCoordinateByWrapping(int coordinate) {
