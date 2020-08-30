@@ -1,39 +1,56 @@
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Stream;
+import java.util.function.Consumer;
+
+import static java.util.Arrays.asList;
 
 public enum Direction {
-    N, W, S, E;
+    N(MarsRover::up),
+    E(MarsRover::right),
+    S(MarsRover::down),
+    W(MarsRover::left);
+
+    private static final List<Direction> directions = asList(values());
+    private Consumer<MarsRover> movementMethod;
+
+    Direction(Consumer<MarsRover> movementMethod) {
+        this.movementMethod = movementMethod;
+    }
 
     @Override
     public String toString() {
         return name();
     }
 
-    void advance(MarsRover marsRover) {
-        if (this == N) {
-            marsRover.up();
-        } else if (this == S) {
-            marsRover.down();
-        } else if (this == E) {
-            marsRover.right();
-        } else if (this == W) {
-            marsRover.left();
-        }
+    public void advance(MarsRover marsRover) {
+        this.movementMethod.accept(marsRover);
     }
 
-    Direction rotate(char ch) {
-        List<Direction> directions = Arrays.asList(values());
-        int directionIndex = directions.indexOf(this);
-        directionIndex = ch == 'L' ? directionIndex + 1 : directionIndex - 1;
+    public Direction rotateLeft() {
+        return rotateTo(-1);
+    }
 
-        if (directionIndex < 0) {
-            directionIndex = 3;
-        } else if (directionIndex > 3) {
-            directionIndex = 0;
-        }
+    public Direction rotateRight() {
+        return rotateTo(+1);
+    }
 
+    private int wrapIfOutOfBound(int newIndex) {
+        int MAX_INDEX = 3;
+        int MIN_INDEX = 0;
+        if (newIndex > MAX_INDEX) return MIN_INDEX;
+        if (newIndex < MIN_INDEX) return 3;
+        return newIndex;
+    }
+
+    private Direction rotateTo(int directionModifier) {
+        int newIndex = wrapIfOutOfBound(currentIndex() + directionModifier);
+        return directionAtIndex(newIndex);
+    }
+
+    private Direction directionAtIndex(int directionIndex) {
         return directions.get(directionIndex);
     }
 
+    private int currentIndex() {
+        return directions.indexOf(this);
+    }
 }

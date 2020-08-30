@@ -1,5 +1,4 @@
 public class MarsRover {
-
     private int y;
     private int x;
     private Direction direction;
@@ -10,20 +9,20 @@ public class MarsRover {
         direction = Direction.N;
     }
 
-    public String execute(String commands) {
-        computeFinalPosition(commands);
+    public String execute(String commandString) {
+        moveToFinalPosition(commandString);
         return buildOutputString();
     }
 
-    private void computeFinalPosition(String commands) {
-        for (char ch : commands.toCharArray()) {
-            if (ch == 'M') {
-                direction.advance(this);
-
-            } else {
-                direction = direction.rotate(ch);
-            }
+    private void moveToFinalPosition(String commandString) {
+        for (char commandChar : commandString.toCharArray()) {
+            Command command = Command.byChar(commandChar);
+            command.apply(this);
         }
+    }
+
+    private String buildOutputString() {
+        return String.format("%d:%d:%s", x, y, direction.toString());
     }
 
     void right() {
@@ -42,8 +41,15 @@ public class MarsRover {
         y--;
     }
 
-    private String buildOutputString() {
-        return String.format("%d:%d:%s", x, y, direction.toString());
+    void advance() {
+        direction.advance(this);
     }
 
+    void rotateLeft() {
+        direction = direction.rotateLeft();
+    }
+
+    void rotateRight() {
+        direction = direction.rotateRight();
+    }
 }
