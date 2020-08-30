@@ -1,15 +1,13 @@
-import java.util.Arrays;
-
 public class MarsRover {
 
     private int y;
     private int x;
-    private String currentDirection;
+    private Direction direction;
 
     public MarsRover() {
         x = 0;
         y = 0;
-        currentDirection = "N";
+        direction = Direction.N;
     }
 
     public String execute(String commands) {
@@ -18,39 +16,34 @@ public class MarsRover {
     }
 
     private void computeFinalPosition(String commands) {
-        for (char ch: commands.toCharArray()) {
+        for (char ch : commands.toCharArray()) {
             if (ch == 'M') {
-                advanceInDirection();
+                direction.advance(this);
 
             } else {
-                changeCurrentDirection(ch);
+                direction = direction.rotate(ch);
             }
         }
     }
 
-    private void changeCurrentDirection(int ch) {
-        String[] directions = new String[]{"N", "W", "S", "E"};
-        int directionIndex = Arrays.asList(directions).indexOf(currentDirection);
-        directionIndex = ch == 'L' ? directionIndex + 1 : directionIndex - 1;
-        if (directionIndex < 0) directionIndex = 3;
-        else if (directionIndex > 3) directionIndex = 0;
-        this.currentDirection = directions[directionIndex];
+    void right() {
+        x++;
     }
 
-    private void advanceInDirection() {
-        if ("N".equals(currentDirection)) {
-            y++;
-        } else if ("S".equals(currentDirection)) {
-            y--;
-        } else if ("E".equals(currentDirection)) {
-            x++;
-        } else if ("W".equals(currentDirection)) {
-            x--;
-        }
+    void left() {
+        x--;
+    }
+
+    void up() {
+        y++;
+    }
+
+    void down() {
+        y--;
     }
 
     private String buildOutputString() {
-        return String.format("%d:%d:%s", x, y, currentDirection);
+        return String.format("%d:%d:%s", x, y, direction.toString());
     }
 
 }
