@@ -1,5 +1,6 @@
 public class MarsRover {
     private final Grid grid;
+    private final Point position;
 
     private int y;
     private int x;
@@ -10,6 +11,7 @@ public class MarsRover {
         this.grid = grid;
         this.x = 0;
         this.y = 0;
+        this.position = new Point(0, 0);
         this.direction = Direction.N;
         this.obstacleEncountered = false;
     }
@@ -46,7 +48,7 @@ public class MarsRover {
     }
 
     void moveLeft() {
-        x = grid.wrappedCoordinate(x - 1);
+        moveOn(x-1, y);
     }
 
     void moveUp() {
@@ -54,7 +56,7 @@ public class MarsRover {
     }
 
     void moveDown() {
-        y = grid.wrappedCoordinate(y - 1);
+        moveOn(x, y-1);
 }
 
     void advance() {

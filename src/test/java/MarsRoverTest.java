@@ -83,44 +83,47 @@ public class MarsRoverTest {
 
     @Test
     void should_not_move_at_all_with_one_obstacle() {
-        Grid grid = new Grid()
-                .addObstacle(0, 1);
+        Grid grid = new GridBuilder()
+                .addObstacle(0, 1)
+                .build();
         assertEquals("o:0:0:N", new MarsRover(grid).execute("M"));
     }
 
     @Test
     void should_not_move_after_rotate_with_one_obstacle() {
-        Grid grid = new Grid().addObstacle(1, 0);
+        Grid grid = new GridBuilder().addObstacle(1, 0).build();
         assertEquals("o:0:0:E", new MarsRover(grid).execute("RM"));
     }
 
     @Test
     void should_move_up_and_then_stop_on_obstacle() {
-        Grid grid = new Grid().addObstacle(0, 2);
+        Grid grid = new GridBuilder().addObstacle(0, 2).build();
         assertEquals("o:0:1:N", new MarsRover(grid).execute("MM"));
     }
 
     @Test
     void should_move_some_steps_and_then_stop_on_obstacle() {
-        Grid grid = new Grid().addObstacle(2, 2);
+        Grid grid = new GridBuilder().addObstacle(2, 2).build();
         assertEquals("o:2:1:N", new MarsRover(grid).execute("MRMMLM"));
     }
 
     @Test
     void should_avoid_more_obstacles_and_stop_on_the_last() {
-        Grid grid = new Grid()
+        Grid grid = new GridBuilder()
                 .addObstacle(0, 1)
                 .addObstacle(2, 0)
-                .addObstacle(3, 1);
+                .addObstacle(3, 1)
+                .build();
 
         assertEquals("o:2:1:E", new MarsRover(grid).execute("RMLMRMM"));
     }
 
     @Test
     void should_stop_on_first_encountered_obstacle() {
-        Grid grid = new Grid()
+        Grid grid = new GridBuilder()
                 .addObstacle(0, 1)
-                .addObstacle(2, 0);
+                .addObstacle(2, 0)
+                .build();
 
         assertEquals("o:0:0:N", new MarsRover(grid).execute("M"));
     }
