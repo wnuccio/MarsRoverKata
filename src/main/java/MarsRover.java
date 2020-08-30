@@ -32,7 +32,7 @@ public class MarsRover {
     }
 
     private void moveOn(int x1, int y1) {
-        if (grid.hasObstacles()) {
+        if (grid.hasObstacleAt(x1, y1)) {
             this.obstacleEncountered = true;
             return;
         }

@@ -94,4 +94,9 @@ public class MarsRoverTest {
     void should_not_move_after_rotate_with_one_obstacle() {
         assertEquals("o:0:0:E", new MarsRover(new Grid(1, 0)).execute("RM"));
     }
+
+    @Test
+    void should_move_up_and_then_stop_on_obstacle() {
+        assertEquals("o:0:1:N", new MarsRover(new Grid(0, 2)).execute("MM"));
+    }
 }

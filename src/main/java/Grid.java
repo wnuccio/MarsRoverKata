@@ -2,14 +2,16 @@ public class Grid {
     private final int GRID_SIZE = 10;
     private final int MIN_COORDINATE = 0;
     private final int MAX_COORDINATE = GRID_SIZE - 1;
-    private boolean obstacles;
+    private final Integer obstacleX;
+    private final Integer obstacleY;
 
     public Grid() {
-        obstacles = false;
+        this(null, null);
     }
 
-    public Grid(int x, int y) {
-        this.obstacles = true;
+    public Grid(Integer x, Integer y) {
+        this.obstacleX = x;
+        this.obstacleY = y;
     }
 
     public int correctCoordinateByWrapping(int coordinate) {
@@ -18,7 +20,12 @@ public class Grid {
         return coordinate;
     }
 
-    public boolean hasObstacles() {
-        return obstacles;
+    public boolean hasObstacleAt(int x, int y) {
+        if (noObstacle()) return false;
+        return obstacleX.equals(x) && obstacleY.equals(y);
+    }
+
+    private boolean noObstacle() {
+        return obstacleX == null || obstacleY == null;
     }
 }
