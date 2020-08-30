@@ -79,4 +79,10 @@ public class MarsRoverTest {
     void wrap_around_after_moving_down() {
         assertEquals("0:9:S", marsRover().execute("LLM"));
     }
+
+    @Test
+    void should_move_describing_a_square_with_wrapping() {
+        assertEquals("0:0:E", marsRover().execute("MMLMMLMMLMM"));
+    }
+
 }
