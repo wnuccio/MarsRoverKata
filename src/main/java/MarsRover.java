@@ -37,8 +37,8 @@ public class MarsRover {
             return;
         }
 
-        x = grid.correctCoordinateByWrapping(x1);
-        y = grid.correctCoordinateByWrapping(y1);
+        x = grid.wrappedCoordinate(x1);
+        y = grid.wrappedCoordinate(y1);
     }
 
     void moveRight() {
@@ -46,7 +46,7 @@ public class MarsRover {
     }
 
     void moveLeft() {
-        x = grid.correctCoordinateByWrapping(x - 1);
+        x = grid.wrappedCoordinate(x - 1);
     }
 
     void moveUp() {
@@ -54,7 +54,7 @@ public class MarsRover {
     }
 
     void moveDown() {
-        y = grid.correctCoordinateByWrapping(y - 1);
+        y = grid.wrappedCoordinate(y - 1);
 }
 
     void advance() {

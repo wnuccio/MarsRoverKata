@@ -3,7 +3,7 @@ import java.util.List;
 
 public class Grid {
     private WrappingRange coordinateRange;
-    private List<Obstacle> obstacles;
+    private List<Point> obstacles;
 
     public Grid() {
         int size = 10;
@@ -12,11 +12,11 @@ public class Grid {
     }
 
     public Grid addObstacle(int x, int y) {
-        this.obstacles.add(new Obstacle(x, y));
+        this.obstacles.add(new Point(x, y));
         return this;
     }
 
-    public int correctCoordinateByWrapping(int coordinate) {
+    public int wrappedCoordinate(int coordinate) {
         return coordinateRange.wrappedValue(coordinate);
     }
 

@@ -6,10 +6,6 @@ public class Directions {
     private final List<Direction> directionList;
     private WrappingRange indexRange;
 
-    private int wrapIfOutOfBound(int newIndex) {
-        return indexRange.wrappedValue(newIndex);
-    }
-
     public Directions() {
         directionList = asList(
                 Direction.N,
@@ -20,17 +16,17 @@ public class Directions {
         indexRange = new WrappingRange(0, directionList.size()-1);
     }
 
-    public Direction getByIndex(int directionIndex) {
+    private Direction getByIndex(int directionIndex) {
         return directionList.get(directionIndex);
     }
 
-    public int indexOf(Direction direction) {
+    private int indexOf(Direction direction) {
         return directionList.indexOf(direction);
     }
 
-    public Direction applyRotation(Direction direction, int directionModifier) {
+    public Direction applyRotation(Direction direction, int rotationSign) {
         int currentIndex = indexOf(direction);
-        int newIndex = wrapIfOutOfBound(currentIndex + directionModifier);
+        int newIndex = indexRange.wrappedValue(currentIndex + rotationSign);
         return this.getByIndex(newIndex);
     }
 }
