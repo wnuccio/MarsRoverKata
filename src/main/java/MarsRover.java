@@ -13,6 +13,8 @@ public class MarsRover {
     }
 
     public String execute(String commandString) {
+        if (grid.hasObstacles()) return "o:" + buildOutputString();
+
         moveToFinalPosition(commandString);
         return buildOutputString();
     }

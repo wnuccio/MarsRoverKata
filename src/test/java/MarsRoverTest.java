@@ -85,4 +85,10 @@ public class MarsRoverTest {
         assertEquals("0:0:E", marsRover().execute("MMLMMLMMLMM"));
     }
 
+    @Test
+    void should_not_move_at_all_with_one_obstacle() {
+        assertEquals("o:0:0:N", new MarsRover(new Grid(0, 1)).execute("M"));
+    }
+
+
 }
