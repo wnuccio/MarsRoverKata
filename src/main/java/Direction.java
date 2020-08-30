@@ -1,25 +1,20 @@
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 public enum Direction {
-    N(MarsRover::moveUp),
-    E(MarsRover::moveRight),
-    S(MarsRover::moveDown),
-    W(MarsRover::moveLeft);
+    N(Point::upward),
+    E(Point::atRight),
+    S(Point::down),
+    W(Point::atLeft);
 
     private static final Directions directions = new Directions();
-    private Consumer<MarsRover> movementMethod;
+    private final NextPoint nextPoint;
 
-    Direction(Consumer<MarsRover> movementMethod) {
-        this.movementMethod = movementMethod;
-    }
-
-    @Override
-    public String toString() {
-        return name();
+    Direction(NextPoint pointFunction) {
+        this.nextPoint = pointFunction;
     }
 
     public void advance(MarsRover marsRover) {
-        this.movementMethod.accept(marsRover);
+        marsRover.moveOn(nextPoint);
     }
 
     public Direction rotateLeft() {

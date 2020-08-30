@@ -19,11 +19,11 @@ public class Point {
         return new Point(x - 1, y);
     }
 
-    public Point atUp() {
+    public Point upward() {
         return new Point(x, y + 1);
     }
 
-    public Point atDown() {
+    public Point down() {
         return new Point(x, y - 1);
     }
 

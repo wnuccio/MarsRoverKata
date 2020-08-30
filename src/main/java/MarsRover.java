@@ -30,7 +30,8 @@ public class MarsRover {
         return output.asString();
     }
 
-    private void moveOn(Point newPosition) {
+    public void moveOn(NextPoint nextPoint) {
+        Point newPosition = nextPoint.after(position);
         if (grid.hasObstacleAt(newPosition)) {
             this.obstacleEncountered = true;
             return;
@@ -38,22 +39,6 @@ public class MarsRover {
 
         this.position = grid.wrappedPoint(newPosition);
     }
-
-    void moveRight() {
-        moveOn(position.atRight());
-    }
-
-    void moveLeft() {
-        moveOn(position.atLeft());
-    }
-
-    void moveUp() {
-        moveOn(position.atUp());
-    }
-
-    void moveDown() {
-        moveOn(position.atDown());
-}
 
     void advance() {
         direction.advance(this);

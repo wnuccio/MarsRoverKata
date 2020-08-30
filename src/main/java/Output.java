@@ -11,7 +11,7 @@ public class Output {
 
     public String asString() {
         String obstacles = obstacleEncountered ? "o:" : "";
-        return String.format("%s%d:%d:%s", obstacles, x, y, direction.toString());
+        return String.format("%s%d:%d:%s", obstacles, x, y, direction.name());
     }
 
     public void position(int x, int y) {
