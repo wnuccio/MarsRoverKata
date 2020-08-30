@@ -41,7 +41,8 @@ public class MarsRover {
     }
 
     void down() {
-        y--;
+//        y--;
+        y = grid.decrementY(y);
 }
 
     void advance() {
