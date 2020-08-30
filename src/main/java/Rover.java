@@ -10,11 +10,8 @@ public class Rover {
     }
 
     public void moveOnGrid(Grid grid) {
-        direction.moveOnGrid(this, grid);
-    }
+        Point newPosition = direction.getNextPosition(position);
 
-    public void moveOnGrid(Grid grid, NextPoint nextPoint) {
-        Point newPosition = nextPoint.after(position);
         if (grid.hasObstacleAt(newPosition)) {
             this.obstacleEncountered = true;
             return;
