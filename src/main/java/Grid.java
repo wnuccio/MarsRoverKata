@@ -1,34 +1,11 @@
 public class Grid {
-    public int maxY() {
-        return 10;
-    }
+    private final int GRID_SIZE = 10;
+    private final int MIN_COORDINATE = 0;
+    private final int MAX_COORDINATE = GRID_SIZE - 1;
 
-    public int maxX() {
-        return 10;
-    }
-
-    public int incrementX(int x) {
-        x++;
-        if (x == maxX()) x = 0;
-        return x;
-    }
-
-    public int decrementX(int x) {
-        x--;
-        if (x < 0) x = maxX() - 1;
-        return x;
-
-    }
-
-    public int incrementY(int y) {
-        y++;
-        if (y == maxY()) y = 0;
-        return y;
-    }
-
-    public int decrementY(int y) {
-        y--;
-        if (y < 0) y = maxY() - 1;
-        return y;
+    public int correctCoordinateByWrapping(int coordinate) {
+        if (coordinate < MIN_COORDINATE) return MAX_COORDINATE;
+        if (coordinate > MAX_COORDINATE) return MIN_COORDINATE;
+        return coordinate;
     }
 }

@@ -4,10 +4,10 @@ import java.util.function.Consumer;
 import static java.util.Arrays.asList;
 
 public enum Direction {
-    N(MarsRover::up),
-    E(MarsRover::right),
-    S(MarsRover::down),
-    W(MarsRover::left);
+    N(MarsRover::moveUp),
+    E(MarsRover::moveRight),
+    S(MarsRover::moveDown),
+    W(MarsRover::moveLeft);
 
     private static final List<Direction> directions = asList(values());
     private Consumer<MarsRover> movementMethod;

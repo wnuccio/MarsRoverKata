@@ -28,21 +28,20 @@ public class MarsRover {
         return String.format("%d:%d:%s", x, y, direction.toString());
     }
 
-    void right() {
-        x = grid.incrementX(x);
+    void moveRight() {
+        x = grid.correctCoordinateByWrapping(x + 1);
     }
 
-    void left() {
-        x = grid.decrementX(x);
+    void moveLeft() {
+        x = grid.correctCoordinateByWrapping(x - 1);
     }
 
-    void up() {
-        y = grid.incrementY(y);
+    void moveUp() {
+        y = grid.correctCoordinateByWrapping(y + 1);
     }
 
-    void down() {
-//        y--;
-        y = grid.decrementY(y);
+    void moveDown() {
+        y = grid.correctCoordinateByWrapping(y - 1);
 }
 
     void advance() {
