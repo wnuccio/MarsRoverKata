@@ -1,13 +1,15 @@
 public class MarsRover {
-    private static final int MAX_Y = 10;
+    private final Grid grid;
+
     private int y;
     private int x;
     private Direction direction;
 
-    public MarsRover() {
-        x = 0;
-        y = 0;
-        direction = Direction.N;
+    public MarsRover(Grid grid) {
+        this.grid = grid;
+        this.x = 0;
+        this.y = 0;
+        this.direction = Direction.N;
     }
 
     public String execute(String commandString) {
@@ -36,7 +38,7 @@ public class MarsRover {
 
     void up() {
         y++;
-        if (y == MAX_Y) y = 0;
+        if (y == grid.maxY()) y = 0;
     }
 
     void down() {
