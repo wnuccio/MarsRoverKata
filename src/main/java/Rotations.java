@@ -1,10 +1,10 @@
 import java.util.Arrays;
 
-public class Directions {
+public class Rotations {
     private final Direction[] directionArray;
     private WrappingRange indexRange;
 
-    public Directions() {
+    public Rotations() {
         directionArray = new Direction[] {
                 Direction.N,
                 Direction.E,

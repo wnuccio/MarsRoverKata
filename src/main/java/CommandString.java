@@ -1,10 +1,10 @@
 public class CommandString {
     private final String commandString;
-    private final Directions directions;
+    private final Rotations rotations;
 
     public CommandString(String commandString) {
         this.commandString = commandString;
-        this.directions = new Directions();
+        this.rotations = new Rotations();
     }
 
     public Output execute(Grid grid) {
@@ -15,8 +15,8 @@ public class CommandString {
 
     private Command createCommand(char commandChar, Grid grid) {
         if (commandChar == 'M') return new MoveCommand(grid);
-        if (commandChar == 'L') return new RotateCommand(directions::rotateToLeft);
-        if (commandChar == 'R') return new RotateCommand(directions::rotateToRight);
+        if (commandChar == 'L') return new RotateCommand(rotations::rotateToLeft);
+        if (commandChar == 'R') return new RotateCommand(rotations::rotateToRight);
         throw new IllegalArgumentException("Invalid command char: " + commandChar);
     }
 
