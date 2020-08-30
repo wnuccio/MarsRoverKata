@@ -30,6 +30,7 @@ public class MarsRover {
 
     void right() {
         x++;
+        if (x == grid.maxX()) x = 0;
     }
 
     void left() {
