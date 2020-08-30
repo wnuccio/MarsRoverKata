@@ -11,14 +11,14 @@ public class Grid {
         this.obstacles = new ArrayList<>();
     }
 
-    public int wrappedCoordinate(int coordinate) {
-        return coordinateRange.wrappedValue(coordinate);
-    }
-
-    public boolean hasObstacleAt(int x, int y) {
+    public boolean hasObstacleAt(Point point) {
         return obstacles
                 .stream()
-                .anyMatch(obstacle -> obstacle.hasCoordinates(x, y));
+                .anyMatch(obstacle -> obstacle.hasPosition(point));
     }
 
+    public Point wrappedPoint(Point newPosition) {
+        return newPosition.wrapped(coordinateRange);
+
+    }
 }

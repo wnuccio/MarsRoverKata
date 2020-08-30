@@ -1,17 +1,13 @@
 public class MarsRover {
     private final Grid grid;
-    private final Point position;
-
-    private int y;
-    private int x;
+    private Point position;
     private Direction direction;
     private boolean obstacleEncountered;
 
     public MarsRover(Grid grid) {
         this.grid = grid;
-        this.x = 0;
-        this.y = 0;
         this.position = new Point(0, 0);
+
         this.direction = Direction.N;
         this.obstacleEncountered = false;
     }
@@ -29,34 +25,34 @@ public class MarsRover {
     }
 
     private String buildOutputString() {
-        String obstacles = obstacleEncountered ? "o:" : "";
-        return String.format("%s%d:%d:%s", obstacles, x, y, direction.toString());
+        Output output = new Output(obstacleEncountered, direction);
+        position.addTo(output);
+        return output.asString();
     }
 
-    private void moveOn(int x1, int y1) {
-        if (grid.hasObstacleAt(x1, y1)) {
+    private void moveOn(Point newPosition) {
+        if (grid.hasObstacleAt(newPosition)) {
             this.obstacleEncountered = true;
             return;
         }
 
-        x = grid.wrappedCoordinate(x1);
-        y = grid.wrappedCoordinate(y1);
+        this.position = grid.wrappedPoint(newPosition);
     }
 
     void moveRight() {
-        moveOn(x+1, y);
+        moveOn(position.atRight());
     }
 
     void moveLeft() {
-        moveOn(x-1, y);
+        moveOn(position.atLeft());
     }
 
     void moveUp() {
-        moveOn(x, y+1);
+        moveOn(position.atUp());
     }
 
     void moveDown() {
-        moveOn(x, y-1);
+        moveOn(position.atDown());
 }
 
     void advance() {

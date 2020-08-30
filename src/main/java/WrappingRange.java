@@ -7,9 +7,9 @@ public class WrappingRange {
         this.max = max;
     }
 
-    public int wrappedValue(int i) {
-        if (i < min) return max;
-        if (i > max) return min;
-        return i;
+    public int wrappedValue(int value) {
+        if (value < min) return max;
+        if (value > max) return min;
+        return value;
     }
 }
