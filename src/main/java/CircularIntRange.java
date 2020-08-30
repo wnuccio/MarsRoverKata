@@ -9,6 +9,7 @@ public class CircularIntRange {
 
     public int wrappedValue(int i) {
         if (i < min) return max;
+        if (i > max) return min;
         return i;
     }
 }

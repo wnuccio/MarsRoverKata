@@ -15,4 +15,9 @@ public class CircularIntRangeTest {
     void should_return_upper_bound_if_value_under_minimum() {
         assertEquals(3, new CircularIntRange(0, 3).wrappedValue(-1));
     }
+
+    @Test
+    void should_return_lower_bound_if_value_over_maximum() {
+        assertEquals(0, new CircularIntRange(0, 3).wrappedValue(4));
+    }
 }
