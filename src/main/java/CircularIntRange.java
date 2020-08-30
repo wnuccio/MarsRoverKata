@@ -3,6 +3,6 @@ public class CircularIntRange {
     }
 
     public int wrappedValue(int i) {
-        return 1;
+        return i;
     }
 }
