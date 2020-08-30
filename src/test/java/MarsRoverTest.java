@@ -99,4 +99,9 @@ public class MarsRoverTest {
     void should_move_up_and_then_stop_on_obstacle() {
         assertEquals("o:0:1:N", new MarsRover(new Grid(0, 2)).execute("MM"));
     }
+
+    @Test
+    void should_move_some_steps_and_then_stop_on_obstacle() {
+        assertEquals("o:2:1:N", new MarsRover(new Grid(2, 2)).execute("MRMMLM"));
+    }
 }
