@@ -29,22 +29,20 @@ public class MarsRover {
     }
 
     void right() {
-        x++;
-        if (x == grid.maxX()) x = 0;
+        x = grid.incrementX(x);
     }
 
     void left() {
-        x--;
+        x = grid.decrementX(x);
     }
 
     void up() {
-        y++;
-        if (y == grid.maxY()) y = 0;
+        y = grid.incrementY(y);
     }
 
     void down() {
         y--;
-    }
+}
 
     void advance() {
         direction.advance(this);
