@@ -37,7 +37,7 @@ public enum Direction {
         int MAX_INDEX = 3;
         int MIN_INDEX = 0;
         if (newIndex > MAX_INDEX) return MIN_INDEX;
-        if (newIndex < MIN_INDEX) return 3;
+        if (newIndex < MIN_INDEX) return MAX_INDEX;
         return newIndex;
     }
 

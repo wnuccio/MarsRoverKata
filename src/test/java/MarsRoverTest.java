@@ -5,17 +5,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class MarsRoverTest {
 
-    @BeforeEach
-    void setUp() {
+    private MarsRover marsRover() {
+        return new MarsRover(new Grid());
     }
 
     @Test
     void should_stay_into_start_position_after_empty_command() {
         assertEquals("0:0:N", marsRover().execute(""));
-    }
-
-    private MarsRover marsRover() {
-        return new MarsRover(new Grid());
     }
 
     @Test
