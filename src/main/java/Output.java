@@ -1,8 +1,8 @@
 public class Output {
     private final boolean obstacleEncountered;
     private final Direction direction;
-    int x;
-    int y;
+    private int x;
+    private int y;
 
     public Output(boolean obstacleEncountered, Direction direction1) {
         this.obstacleEncountered = obstacleEncountered;
