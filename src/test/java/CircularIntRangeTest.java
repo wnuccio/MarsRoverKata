@@ -10,4 +10,9 @@ public class CircularIntRangeTest {
         assertEquals(0, new CircularIntRange(0, 3).wrappedValue(0));
         assertEquals(3, new CircularIntRange(0, 3).wrappedValue(3));
     }
+
+    @Test
+    void should_return_upper_bound_if_value_under_minimum() {
+        assertEquals(3, new CircularIntRange(0, 3).wrappedValue(-1));
+    }
 }
