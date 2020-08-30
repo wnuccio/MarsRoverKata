@@ -9,8 +9,13 @@ public enum Direction {
     S(MarsRover::moveDown),
     W(MarsRover::moveLeft);
 
-    private static final List<Direction> directions = asList(values());
     private Consumer<MarsRover> movementMethod;
+
+    private static final List<Direction> directions = asList(values());
+    static int MAX_INDEX = 3;
+    static int MIN_INDEX = 0;
+
+    private static WrappingRange indexRange = new WrappingRange(MIN_INDEX, MAX_INDEX);
 
     Direction(Consumer<MarsRover> movementMethod) {
         this.movementMethod = movementMethod;
@@ -34,11 +39,7 @@ public enum Direction {
     }
 
     private int wrapIfOutOfBound(int newIndex) {
-        int MAX_INDEX = 3;
-        int MIN_INDEX = 0;
-        if (newIndex > MAX_INDEX) return MIN_INDEX;
-        if (newIndex < MIN_INDEX) return MAX_INDEX;
-        return newIndex;
+        return indexRange.wrappedValue(newIndex);
     }
 
     private Direction rotateTo(int directionModifier) {

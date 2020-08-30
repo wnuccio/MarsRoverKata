@@ -1,8 +1,8 @@
-public class CircularIntRange {
+public class WrappingRange {
     private int min;
     private int max;
 
-    public CircularIntRange(int min, int max) {
+    public WrappingRange(int min, int max) {
         this.min = min;
         this.max = max;
     }
