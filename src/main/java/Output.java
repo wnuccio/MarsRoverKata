@@ -4,9 +4,9 @@ public class Output {
     private int x;
     private int y;
 
-    public Output(boolean obstacleEncountered, Direction direction1) {
+    public Output(boolean obstacleEncountered, Direction direction) {
         this.obstacleEncountered = obstacleEncountered;
-        this.direction = direction1;
+        this.direction = direction;
     }
 
     public String asString() {

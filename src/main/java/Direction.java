@@ -1,5 +1,3 @@
-import java.util.function.Function;
-
 public enum Direction {
     N(Point::upward),
     E(Point::atRight),
@@ -13,10 +11,6 @@ public enum Direction {
         this.nextPoint = pointFunction;
     }
 
-    public void advance(MarsRover marsRover) {
-        marsRover.moveOn(nextPoint);
-    }
-
     public Direction rotateLeft() {
         return rotateTo(-1);
     }
@@ -27,4 +21,7 @@ public enum Direction {
         return directions.applyRotation(this, directionModifier);
     }
 
+    public void moveOnGrid(Rover rover, Grid grid) {
+        rover.moveOnGrid(grid, nextPoint);
+    }
 }

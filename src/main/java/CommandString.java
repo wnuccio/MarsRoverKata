@@ -5,22 +5,24 @@ public class CommandString {
         this.commandString = commandString;
     }
 
-    public Output execute(MarsRover marsRover) {
-        moveToFinalPosition(marsRover);
-        return buildOutputString(marsRover);
+    public static Command createCommand(char commandChar, Rover rover, Grid grid) {
+        if (commandChar == 'M') return new MoveCommand(rover, grid);
+        if (commandChar == 'L') return new RotateLeftCommand(rover);
+        if (commandChar == 'R') return new RotateRightCommand(rover);
+        throw new IllegalArgumentException("Invalid command char: " + commandChar);
     }
 
-    private void moveToFinalPosition(MarsRover marsRover) {
+    public Output execute(Grid grid) {
+        Rover rover = new Rover();
+        applyAllCommands(rover, grid);
+        return rover.produceOutput();
+    }
+
+    private void applyAllCommands(Rover rover, Grid grid) {
         for (char commandChar : commandString.toCharArray()) {
-            Command command = Command.byChar(commandChar);
-            command.apply(marsRover);
+            Command command = createCommand(commandChar, rover, grid);
+            command.apply(rover);
         }
-    }
-
-    private Output buildOutputString(MarsRover marsRover) {
-        Output output = new Output(marsRover.obstacleEncountered, marsRover.direction);
-        marsRover.position.addTo(output);
-        return output;
     }
 
 }
