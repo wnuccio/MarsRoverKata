@@ -4,17 +4,17 @@ public class MarsRover {
     private int y;
     private int x;
     private Direction direction;
+    private boolean obstacleEncountered;
 
     public MarsRover(Grid grid) {
         this.grid = grid;
         this.x = 0;
         this.y = 0;
         this.direction = Direction.N;
+        this.obstacleEncountered = false;
     }
 
     public String execute(String commandString) {
-        if (grid.hasObstacles()) return "o:" + buildOutputString();
-
         moveToFinalPosition(commandString);
         return buildOutputString();
     }
@@ -27,11 +27,22 @@ public class MarsRover {
     }
 
     private String buildOutputString() {
-        return String.format("%d:%d:%s", x, y, direction.toString());
+        String obstacles = obstacleEncountered ? "o:" : "";
+        return String.format("%s%d:%d:%s", obstacles, x, y, direction.toString());
+    }
+
+    private void moveOn(int x1, int y1) {
+        if (grid.hasObstacles()) {
+            this.obstacleEncountered = true;
+            return;
+        }
+
+        x = grid.correctCoordinateByWrapping(x1);
+        y = grid.correctCoordinateByWrapping(y1);
     }
 
     void moveRight() {
-        x = grid.correctCoordinateByWrapping(x + 1);
+        moveOn(x+1, y);
     }
 
     void moveLeft() {
@@ -39,7 +50,7 @@ public class MarsRover {
     }
 
     void moveUp() {
-        y = grid.correctCoordinateByWrapping(y + 1);
+        moveOn(x, y+1);
     }
 
     void moveDown() {
