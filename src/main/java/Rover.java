@@ -7,7 +7,6 @@ public class Rover {
         this.position = new Point(0, 0);
         this.direction = Direction.N;
         this.obstacleEncountered = false;
-
     }
 
     public void moveOnGrid(Grid grid) {
@@ -21,7 +20,7 @@ public class Rover {
         this.position = grid.wrappedPoint(newPosition);
     }
 
-    void applyRotation(Rotation rotation) {
+    public void applyRotation(Rotation rotation) {
         direction = rotation.apply(direction);
     }
 
