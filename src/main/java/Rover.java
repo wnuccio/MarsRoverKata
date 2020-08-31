@@ -8,8 +8,10 @@ public class Rover {
     }
 
     public void moveOnGrid(Grid grid) {
-        this.obstacleEncountered = orientedPosition.hasObstacleToMovement(grid);
-        if (this.obstacleEncountered) return;
+        if (orientedPosition.hasObstacleToMovement(grid)) {
+            this.obstacleEncountered = true;
+            return;
+        }
 
         this.orientedPosition = orientedPosition.moveOnGrid(grid);
     }

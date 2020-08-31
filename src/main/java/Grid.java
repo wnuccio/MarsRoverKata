@@ -12,16 +12,12 @@ public class Grid {
         this.obstacles = Stream.of(obstacles).collect(Collectors.toSet());
     }
 
-    public static Point obstacle(int x, int y) {
-        return new Point(x, y);
-    }
-
     public boolean hasObstacleAt(Point point) {
         return obstacles.contains(point);
     }
 
-    public Point wrappedPoint(Point newPosition) {
-        return newPosition.wrapped(coordinateRange);
+    public Point wrappedPoint(Point point) {
+        return point.wrapped(coordinateRange);
 
     }
 }

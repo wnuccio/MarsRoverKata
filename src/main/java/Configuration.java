@@ -7,6 +7,7 @@ public class Configuration {
     public Configuration(Grid grid) {
         this.grid = grid;
     }
+
     private CommandFactory commandFactory() {
         Rotations rotations = new Rotations();
         Map<Character, Command> commandMap = new HashMap<>();

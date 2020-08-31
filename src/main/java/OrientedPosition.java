@@ -8,24 +8,18 @@ public class OrientedPosition {
     }
 
     public boolean hasObstacleToMovement(Grid grid) {
-        return grid.hasObstacleAt(positionAfterMovement(grid));
+        OrientedPosition positionAfterMovement = moveOnGrid(grid);
+        return grid.hasObstacleAt(positionAfterMovement.point);
     }
 
     public OrientedPosition moveOnGrid(Grid grid) {
-        Point newPosition = positionAfterMovement(grid);
-        return new OrientedPosition(newPosition, direction);
-    }
-
-    private Point positionAfterMovement(Grid grid) {
-        Point newPosition = direction.getNextPosition(point);
-        newPosition = grid.wrappedPoint(newPosition);
-        return newPosition;
+        Point newPoint = grid.wrappedPoint(direction.getNextPosition(point));
+        return new OrientedPosition(newPoint, direction);
     }
 
     public OrientedPosition rotate(Rotation rotation) {
         Direction newDirection = rotation.apply(direction);
         return new OrientedPosition(point, newDirection);
-
     }
 
     public void writeOutput(Output output) {

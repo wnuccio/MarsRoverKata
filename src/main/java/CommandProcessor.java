@@ -8,15 +8,12 @@ public class CommandProcessor {
     }
 
     public Output execute() {
-        applyAllCommands();
-        return roverCommandConsumer.buildOutput();
-    }
-
-    private void applyAllCommands() {
         while(commandExtractor.hasCommand()) {
             Command command = commandExtractor.nextCommand();
             roverCommandConsumer.accept(command);
         }
+
+        return roverCommandConsumer.buildOutput();
     }
 
 }

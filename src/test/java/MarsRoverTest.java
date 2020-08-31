@@ -88,7 +88,7 @@ public class MarsRoverTest {
     }
 
     private Point obstacle(int x, int y) {
-        return Grid.obstacle(x, y);
+        return new Point(x, y);
     }
 
     @Test
