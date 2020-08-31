@@ -7,7 +7,6 @@ public class Configuration {
     public Configuration(Grid grid) {
         this.grid = grid;
     }
-
     private CommandFactory commandFactory() {
         Rotations rotations = new Rotations();
         Map<Character, Command> commandMapImpl = new HashMap<>();
@@ -17,8 +16,15 @@ public class Configuration {
         return new CommandFactory(commandMapImpl);
     }
 
+    private RoverCommandConsumer roverCommandConsumer() {
+        return new RoverCommandConsumer(new Rover(), new Output());
+    }
+
+    private CommandExtractor commandExtractor(String commandString) {
+        return new CommandExtractor(commandString.toCharArray(), commandFactory());
+    }
+
     public CommandProcessor commandProcessor(String commandString) {
-        CommandExtractor commandExtractor = new CommandExtractor(commandString.toCharArray(), commandFactory());
-        return new CommandProcessor(commandExtractor, new Rover());
+        return new CommandProcessor(commandExtractor(commandString), roverCommandConsumer());
     }
 }

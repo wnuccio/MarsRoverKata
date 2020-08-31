@@ -24,11 +24,9 @@ public class Rover {
         direction = rotation.apply(direction);
     }
 
-    public Output produceOutput() {
-        Output output = new Output(obstacleEncountered, direction);
-        position.addTo(output);
-        return output;
+    public void writeOutput(Output output) {
+        output.obstacleEncountered(obstacleEncountered);
+        output.finalDirection(direction);
+        position.writeOutput(output);
     }
-
-
 }

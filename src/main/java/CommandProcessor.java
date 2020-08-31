@@ -1,21 +1,21 @@
 public class CommandProcessor {
     private final CommandExtractor commandExtractor;
-    private final Rover rover;
+    private final RoverCommandConsumer roverCommandConsumer;
 
-    public CommandProcessor(CommandExtractor commandExtractor, Rover rover) {
+    public CommandProcessor(CommandExtractor commandExtractor, RoverCommandConsumer roverCommandConsumer) {
         this.commandExtractor = commandExtractor;
-        this.rover = rover;
+        this.roverCommandConsumer = roverCommandConsumer;
     }
 
     public Output execute() {
         applyAllCommands();
-        return rover.produceOutput();
+        return roverCommandConsumer.buildOutput();
     }
 
     private void applyAllCommands() {
         while(commandExtractor.hasCommand()) {
             Command command = commandExtractor.nextCommand();
-            command.applyTo(rover);
+            roverCommandConsumer.accept(command);
         }
     }
 

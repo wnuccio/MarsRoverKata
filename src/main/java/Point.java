@@ -34,7 +34,7 @@ public class Point {
         return new Point(wx, wy);
     }
 
-    public void addTo(Output output) {
-        output.position(x, y);
+    public void writeOutput(Output output) {
+        output.finalPosition(x, y);
     }
 }
