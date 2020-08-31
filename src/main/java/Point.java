@@ -7,7 +7,14 @@ public class Point {
         this.y = y;
     }
 
-    public boolean hasPosition(Point that) {
+    @Override
+    public int hashCode() {
+        return Integer.valueOf(x).hashCode() + Integer.valueOf(y).hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        Point that = (Point) obj;
         return this.x == that.x && this.y == that.y;
     }
 

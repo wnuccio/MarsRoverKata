@@ -7,14 +7,19 @@ public class OrientedPosition {
         this.direction = direction;
     }
 
+    public boolean hasObstacleToMovement(Grid grid) {
+        return grid.hasObstacleAt(positionAfterMovement(grid));
+    }
+
     public OrientedPosition moveOnGrid(Grid grid) {
-        Point newPosition = direction.getNextPosition(point);
-        newPosition = grid.wrappedPoint(newPosition);
+        Point newPosition = positionAfterMovement(grid);
         return new OrientedPosition(newPosition, direction);
     }
 
-    public boolean matchesObstacleOnGrid(Grid grid) {
-        return grid.hasObstacleAt(point);
+    private Point positionAfterMovement(Grid grid) {
+        Point newPosition = direction.getNextPosition(point);
+        newPosition = grid.wrappedPoint(newPosition);
+        return newPosition;
     }
 
     public OrientedPosition rotate(Rotation rotation) {

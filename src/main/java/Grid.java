@@ -1,15 +1,15 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Grid {
     private final WrappingRange coordinateRange;
-    private final List<Point> obstacles;
+    private final Set<Point> obstacles;
 
     public Grid(Point... obstacles) {
         int size = 10;
         this.coordinateRange = new WrappingRange(0, size - 1);
-        this.obstacles = new ArrayList<>(); this.obstacles.addAll(Arrays.asList(obstacles));
+        this.obstacles = Stream.of(obstacles).collect(Collectors.toSet());
     }
 
     public static Point obstacle(int x, int y) {
@@ -17,9 +17,7 @@ public class Grid {
     }
 
     public boolean hasObstacleAt(Point point) {
-        return obstacles
-                .stream()
-                .anyMatch(obstacle -> obstacle.hasPosition(point));
+        return obstacles.contains(point);
     }
 
     public Point wrappedPoint(Point newPosition) {
