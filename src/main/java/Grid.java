@@ -11,6 +11,10 @@ public class Grid {
         this.obstacles = new ArrayList<>();
     }
 
+    void addObstacle(Point point) {
+        obstacles.add(point);
+    }
+
     public boolean hasObstacleAt(Point point) {
         return obstacles
                 .stream()

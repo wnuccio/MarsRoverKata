@@ -7,7 +7,7 @@ public class GridBuilder {
     }
 
     public GridBuilder addObstacle(int x, int y) {
-        grid.obstacles.add(new Point(x, y));
+        grid.addObstacle(new Point(x, y));
         return this;
     }
 
