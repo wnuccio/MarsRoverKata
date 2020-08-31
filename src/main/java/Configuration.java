@@ -9,11 +9,11 @@ public class Configuration {
     }
     private CommandFactory commandFactory() {
         Rotations rotations = new Rotations();
-        Map<Character, Command> commandMapImpl = new HashMap<>();
-        commandMapImpl.put('M', new MoveCommand(grid));
-        commandMapImpl.put('L', new RotateCommand(rotations::rotateToLeft));
-        commandMapImpl.put('R', new RotateCommand(rotations::rotateToRight));
-        return new CommandFactory(commandMapImpl);
+        Map<Character, Command> commandMap = new HashMap<>();
+        commandMap.put('M', new MoveCommand(grid));
+        commandMap.put('L', new RotateCommand(rotations::rotateToLeft));
+        commandMap.put('R', new RotateCommand(rotations::rotateToRight));
+        return new CommandFactory(commandMap);
     }
 
     private RoverCommandConsumer roverCommandConsumer() {

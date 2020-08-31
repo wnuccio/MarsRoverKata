@@ -7,7 +7,7 @@ public class Grid {
 
     public Grid() {
         int size = 10;
-        coordinateRange = new WrappingRange(0, size - 1);
+        this.coordinateRange = new WrappingRange(0, size - 1);
         this.obstacles = new ArrayList<>();
     }
 

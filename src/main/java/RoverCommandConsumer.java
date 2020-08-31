@@ -8,7 +8,7 @@ public class RoverCommandConsumer {
     }
 
     public void accept(Command command) {
-        command.applyTo(rover);
+        rover.accept(command);
     }
 
     public Output buildOutput() {

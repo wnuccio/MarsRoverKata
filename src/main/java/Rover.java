@@ -30,4 +30,9 @@ public class Rover {
         output.finalDirection(direction);
         position.writeOutput(output);
     }
+
+    public void accept(Command command) {
+        if (this.obstacleEncountered) return;
+        command.applyTo(this);
+    }
 }

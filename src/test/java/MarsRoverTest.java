@@ -136,4 +136,13 @@ public class MarsRoverTest {
 
         assertEquals("o:0:0:S", new MarsRover(grid).execute("RRM"));
     }
+
+    @Test
+    void should_stop_on_first_obstacle_even_if_there_are_further_commands() {
+        Grid grid = new GridBuilder()
+                .addObstacle(0, 1)
+                .build();
+
+        assertEquals("o:0:0:N", new MarsRover(grid).execute("MR"));
+    }
 }
