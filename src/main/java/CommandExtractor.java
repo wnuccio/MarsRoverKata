@@ -3,8 +3,8 @@ public class CommandExtractor {
     private CommandFactory commandFactory;
     private int i;
 
-    public CommandExtractor(String commandString, CommandFactory commandFactory) {
-        this.commandCharArray = commandString.toCharArray();
+    public CommandExtractor(char[] commandCharArray, CommandFactory commandFactory) {
+        this.commandCharArray = commandCharArray;
         this.commandFactory = commandFactory;
         this.i = 0;
     }

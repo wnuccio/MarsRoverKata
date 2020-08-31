@@ -18,7 +18,7 @@ public class Configuration {
     }
 
     public CommandProcessor commandProcessor(String commandString) {
-        CommandExtractor commandExtractor = new CommandExtractor(commandString, commandFactory());
+        CommandExtractor commandExtractor = new CommandExtractor(commandString.toCharArray(), commandFactory());
         return new CommandProcessor(commandExtractor, new Rover());
     }
 }
