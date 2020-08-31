@@ -127,4 +127,13 @@ public class MarsRoverTest {
 
         assertEquals("o:0:0:N", new MarsRover(grid).execute("M"));
     }
+
+    @Test
+    void should_stop_on_obstacle_in_case_of_wrapping() {
+        Grid grid = new GridBuilder()
+                .addObstacle(0, 9)
+                .build();
+
+        assertEquals("o:0:0:S", new MarsRover(grid).execute("RRM"));
+    }
 }

@@ -11,13 +11,14 @@ public class Rover {
 
     public void moveOnGrid(Grid grid) {
         Point newPosition = direction.getNextPosition(position);
+        newPosition = grid.wrappedPoint(newPosition);
 
         if (grid.hasObstacleAt(newPosition)) {
             this.obstacleEncountered = true;
             return;
         }
 
-        this.position = grid.wrappedPoint(newPosition);
+        this.position = newPosition;
     }
 
     public void applyRotation(Rotation rotation) {
