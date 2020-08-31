@@ -15,10 +15,6 @@ public class Rotations {
         indexRange = new WrappingRange(0, directionArray.length-1);
     }
 
-    private Direction getByIndex(int directionIndex) {
-        return directionArray[directionIndex];
-    }
-
     private int indexOf(Direction direction) {
         return Arrays.asList(directionArray).indexOf(direction);
     }
@@ -26,7 +22,7 @@ public class Rotations {
     private Direction applyRotation(Direction direction, int rotationSign) {
         int currentIndex = indexOf(direction);
         int newIndex = indexRange.wrappedValue(currentIndex + rotationSign);
-        return this.getByIndex(newIndex);
+        return directionArray[newIndex];
     }
 
     public Direction rotateToLeft(Direction direction) {
