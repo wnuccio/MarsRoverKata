@@ -1,18 +1,19 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Grid {
-    private WrappingRange coordinateRange;
-    List<Point> obstacles;
+    private final WrappingRange coordinateRange;
+    private final List<Point> obstacles;
 
-    public Grid() {
+    public Grid(Point... obstacles) {
         int size = 10;
         this.coordinateRange = new WrappingRange(0, size - 1);
-        this.obstacles = new ArrayList<>();
+        this.obstacles = new ArrayList<>(); this.obstacles.addAll(Arrays.asList(obstacles));
     }
 
-    void addObstacle(Point point) {
-        obstacles.add(point);
+    public static Point obstacle(int x, int y) {
+        return new Point(x, y);
     }
 
     public boolean hasObstacleAt(Point point) {
