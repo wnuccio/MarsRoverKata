@@ -8,7 +8,7 @@ public class RotateCommand implements Command {
 
     @Override
     public void applyTo(Rover rover) {
-        rover.applyRotation(rotation);
+        rover.rotate(rotation);
     }
 
 

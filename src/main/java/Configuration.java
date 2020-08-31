@@ -17,7 +17,8 @@ public class Configuration {
     }
 
     private RoverCommandConsumer roverCommandConsumer() {
-        return new RoverCommandConsumer(new Rover(), new Output());
+        Rover rover = new Rover(new OrientedPosition(new Point(0, 0), Direction.N));
+        return new RoverCommandConsumer(rover, new Output());
     }
 
     private CommandExtractor commandExtractor(String commandString) {

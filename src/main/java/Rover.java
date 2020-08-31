@@ -1,34 +1,30 @@
 public class Rover {
-    private Point position;
-    private Direction direction;
+    private OrientedPosition orientedPosition;
     private boolean obstacleEncountered;
 
-    public Rover() {
-        this.position = new Point(0, 0);
-        this.direction = Direction.N;
+    public Rover(OrientedPosition startingPosition) {
+        this.orientedPosition = startingPosition;
         this.obstacleEncountered = false;
     }
 
     public void moveOnGrid(Grid grid) {
-        Point newPosition = direction.getNextPosition(position);
-        newPosition = grid.wrappedPoint(newPosition);
+        OrientedPosition newOrientedPosition = orientedPosition.moveOnGrid(grid);
 
-        if (grid.hasObstacleAt(newPosition)) {
+        if (newOrientedPosition.matchesObstacleOnGrid(grid)) {
             this.obstacleEncountered = true;
             return;
         }
 
-        this.position = newPosition;
+        this.orientedPosition = newOrientedPosition;
     }
 
-    public void applyRotation(Rotation rotation) {
-        direction = rotation.apply(direction);
+    public void rotate(Rotation rotation) {
+        orientedPosition = orientedPosition.rotate(rotation);
     }
 
     public void writeOutput(Output output) {
         output.obstacleEncountered(obstacleEncountered);
-        output.finalDirection(direction);
-        position.writeOutput(output);
+        orientedPosition.writeOutput(output);
     }
 
     public void accept(Command command) {
